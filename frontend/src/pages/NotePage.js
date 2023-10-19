@@ -15,9 +15,9 @@ const NotePage = () => {
   }, [id]);
 
   return (
-    <div className="note-data">
-      <h2>{note?.title}</h2>
-      <h4>{note?.body}</h4>
+    <div className="notes-list-item">
+      <span>{note?.title}</span>
+      <p>{note?.body}</p>
     </div>
   );
 };

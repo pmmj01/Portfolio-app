@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ListItem from "../components/ListItem";
-import NotesBox from "../components/NotesBox";
 
 const NotesListPages = () => {
   const [notes, setNotes] = useState([]);
