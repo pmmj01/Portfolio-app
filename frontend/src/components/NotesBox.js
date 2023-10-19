@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+
 const NotesBox = () => {
   const [notes, setNotes] = useState([]);
   const location = useLocation([]);
