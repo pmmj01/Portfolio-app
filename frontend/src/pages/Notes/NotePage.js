@@ -35,7 +35,7 @@ const NotePage = () => {
     try {
       await CreateNote(note, navigate);
       navigate(`/notes/`);
-      // window.location.reload();
+      window.location.reload();
       console.log("Note created");
     } catch (error) {
       console.error("Filed to delete the note: ", error);
@@ -46,13 +46,12 @@ const NotePage = () => {
     try {
       await DeleteNote(id);
       navigate(`/notes/`);
-      // window.location.reload();
+      window.location.reload();
       console.log("Note deleted");
     } catch (error) {
       console.error("Filed to delete the note: ", error);
     }
   };
-
 
   const handleSubmit = async () => {
     if ((id !== "new" && (!note || note.title === "")) || note.body === "") {
@@ -79,15 +78,19 @@ const NotePage = () => {
   return (
     <div className="notes-list-item">
       <div className="note-header">
-        <h4>{note?.title}</h4>
+        <div>
+          <h4>{note?.title}</h4>
+        </div>
+        <div>
+          <button
+            onClick={
+              isEditing ? handleUpdateNote : () => setIsEditing(!isEditing)
+            }
+          >
+            {isEditing ? "Save" : ""}
+          </button>
+        </div>
         <td>
-          <tr>
-            <button
-              onClick={isEditing ? handleUpdateNote : () => setIsEditing(!isEditing)}
-            >
-              {isEditing ? "Save" : "Edit"}
-            </button>
-          </tr>
           <tr>
             <button>
               <LuSave className="custom-icon" onClick={handleSubmit} />
