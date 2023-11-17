@@ -1,6 +1,4 @@
-import React from "react";
-
-const AddNote = async (id, note) => {
+const EditNote = async (id, note) => {
   await fetch(`/api/notes/notes/${id}/`, {
     method: "PUT",
     headers: {
@@ -10,4 +8,4 @@ const AddNote = async (id, note) => {
   });
 };
 
-export default AddNote;
+export default EditNote;

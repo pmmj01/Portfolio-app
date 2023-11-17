@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import AddNote from "./AddNote";
-
 
 const NotesBox = () => {
   const [notes, setNotes] = useState([]);
@@ -29,7 +27,9 @@ const NotesBox = () => {
   return (
     <div>
       {isOnNotesPage ? commonHeader : <Link to="/notes/">{commonHeader}</Link>}
-      <Link to="/notes/new" className="floating-button">+</Link>
+      <Link to="/notes/new" className="floating-button">
+        +
+      </Link>
     </div>
   );
 };

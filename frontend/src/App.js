@@ -5,7 +5,7 @@ import NotesListPages from "./pages/Notes/NotesListPage";
 import NotePage from "./pages/Notes/NotePage";
 import NotesBox from "./components/Notes/NotesBox";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="container dark">
@@ -20,6 +20,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

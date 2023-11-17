@@ -28,12 +28,16 @@ def createNote(request):
 def updateNote(request, pk):
     data = request.data
     note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(instance=note, data=data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return serializer.data
+    
+    if 'title' in data and data['title'] !='':
+        note.title = data['title']
+        
+    if 'body' in data and data['body'] !='':
+        note.body = data['body']
+    
+    note.save()
+    serializer = NoteSerializer(instance=note)
+    return Response(serializer.data)
 
 
 def deleteNote(request, pk):

@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LuSave } from "react-icons/lu";
 import DeleteNote from "../../components/Notes/DeleteNote";
-import CreateNote from "../../components/Notes/CreateNote";
-import AddNote from "../../components/Notes/AddNote";
+// import CreateNote from "../../components/Notes/CreateNote";
+import EditNote from "../../components/Notes/EditNote";
+import { CreateNoteButton } from "../../components/Notes/CreateNote";
 
 const NotePage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [note, setNote] = useState(null);
+  const [note, setNote] = useState();
   const [isEditing, setIsEditing] = useState(id === "new");
 
   useEffect(() => {
     if (id !== "new") getNote();
+    else setNote({ title: "", body: "" });
   }, [id]);
 
   const getNote = async () => {
@@ -23,30 +25,34 @@ const NotePage = () => {
 
   const handleUpdateNote = async () => {
     try {
-      await AddNote(id, note);
+      await EditNote(id, {
+        title: note.title,
+        body: note.body,
+      });
       navigate(`/notes/`);
       console.log("Update completed");
+      console.log(id);
     } catch (error) {
       console.error("Filed to delete the note: ", error);
     }
   };
 
-  const handleCreateNote = async () => {
-    try {
-      await CreateNote(note, navigate);
-      navigate(`/notes/`);
-      window.location.reload();
-      console.log("Note created");
-    } catch (error) {
-      console.error("Filed to delete the note: ", error);
-    }
-  };
+  // const handleCreateNote = async () => {
+  //   try {
+  //     await CreateNote(note, navigate);
+  //     navigate(`/notes/`);
+  //     // window.location.reload();
+  //     console.log("Note created");
+  //   } catch (error) {
+  //     console.error("Filed to delete the note: ", error);
+  //   }
+  // };
 
   const handleDeleteNote = async () => {
     try {
       await DeleteNote(id);
       navigate(`/notes/`);
-      window.location.reload();
+      // window.location.reload();
       console.log("Note deleted");
     } catch (error) {
       console.error("Filed to delete the note: ", error);
@@ -59,7 +65,7 @@ const NotePage = () => {
     } else if (id !== "new") {
       await handleUpdateNote();
     } else if (id === "new" && note.body !== null) {
-      await handleCreateNote();
+      await CreateNoteButton(note.id);
     }
     await getNote();
     navigate(`/notes/`);
@@ -87,20 +93,15 @@ const NotePage = () => {
               isEditing ? handleUpdateNote : () => setIsEditing(!isEditing)
             }
           >
-            {isEditing ? "Save" : ""}
+            {id !== "new" && isEditing ? "Save" : "" }
           </button>
         </div>
         <td>
           <tr>
-            <button>
-              <LuSave className="custom-icon" onClick={handleSubmit} />
-            </button>
-          </tr>
-          <tr>
             {id !== "new" ? (
               <button onClick={handleDeleteNote}>Delete</button>
             ) : (
-              <button onClick={handleCreateNote}>Done</button>
+              <CreateNoteButton note={note} navigate={navigate} />
             )}
           </tr>
         </td>
