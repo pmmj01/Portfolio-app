@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { LuSave } from "react-icons/lu";
-import DeleteNote from "../../components/Notes/DeleteNote";
-// import CreateNote from "../../components/Notes/CreateNote";
-import EditNote from "../../components/Notes/EditNote";
+import NoteAction from "../../components/Notes/NiteAction";
 import { CreateNoteButton } from "../../components/Notes/CreateNote";
 
 const NotePage = () => {
@@ -18,57 +15,17 @@ const NotePage = () => {
   }, [id]);
 
   const getNote = async () => {
-    const response = await fetch(`/api/notes/notes/${id}/`);
-    const data = await response.json();
-    setNote(data);
-  };
-
-  const handleUpdateNote = async () => {
     try {
-      await EditNote(id, {
-        title: note.title,
-        body: note.body,
-      });
-      navigate(`/notes/`);
-      console.log("Update completed");
-      console.log(id);
+      const response = await fetch(`/api/notes/notes/${id}/`);
+      if (response.ok) {
+        const data = await response.json();
+        setNote(data);
+      } else {
+        console.error("Failed to fetch the note.");
+      }
     } catch (error) {
-      console.error("Filed to delete the note: ", error);
+      console.error("Error fetching the note: ", error);
     }
-  };
-
-  // const handleCreateNote = async () => {
-  //   try {
-  //     await CreateNote(note, navigate);
-  //     navigate(`/notes/`);
-  //     // window.location.reload();
-  //     console.log("Note created");
-  //   } catch (error) {
-  //     console.error("Filed to delete the note: ", error);
-  //   }
-  // };
-
-  const handleDeleteNote = async () => {
-    try {
-      await DeleteNote(id);
-      navigate(`/notes/`);
-      // window.location.reload();
-      console.log("Note deleted");
-    } catch (error) {
-      console.error("Filed to delete the note: ", error);
-    }
-  };
-
-  const handleSubmit = async () => {
-    if ((id !== "new" && (!note || note.title === "")) || note.body === "") {
-      await handleDeleteNote();
-    } else if (id !== "new") {
-      await handleUpdateNote();
-    } else if (id === "new" && note.body !== null) {
-      await CreateNoteButton(note.id);
-    }
-    await getNote();
-    navigate(`/notes/`);
   };
 
   const handleChange = (e, fieldName) => {
@@ -78,7 +35,44 @@ const NotePage = () => {
       ...prevNote,
       [fieldName]: value,
     }));
-    console.log(fieldName, value);
+  };
+
+  const handleNoteAction = async (actionType) => {
+    try {
+      let response;
+      if (actionType === "DELETE") {
+        response = await fetch(`/api/notes/notes/${id}/`, {
+          method: "DELETE",
+        });
+      } else {
+        response = await fetch(`/api/notes/notes/${id}/`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(note),
+        });
+      }
+
+      if (response.ok) {
+        if (actionType === "DELETE") {
+          navigate(`/notes`);
+        } else {
+          const updatedNote = await response.json();
+          setNote(updatedNote);
+          navigate(`/notes/`);
+        }
+      } else {
+        console.error(
+          `Failed to ${actionType === "DELETE" ? "delete" : "update"} the note.`
+        );
+      }
+    } catch (error) {
+      console.error(
+        `Failed to ${actionType === "DELETE" ? "delete" : "update"} the note: `,
+        error
+      );
+    }
   };
 
   return (
@@ -88,18 +82,20 @@ const NotePage = () => {
           <h4>{note?.title}</h4>
         </div>
         <div>
-          <button
-            onClick={
-              isEditing ? handleUpdateNote : () => setIsEditing(!isEditing)
-            }
-          >
-            {id !== "new" && isEditing ? "Save" : "" }
-          </button>
+          {id !== "new" && isEditing && (
+            <NoteAction
+              actionType="UPDATE"
+              onClick={() => handleNoteAction("UPDATE")}
+            />
+          )}
         </div>
         <td>
           <tr>
             {id !== "new" ? (
-              <button onClick={handleDeleteNote}>Delete</button>
+              <NoteAction
+                actionType="DELETE"
+                onClick={() => handleNoteAction("DELETE")}
+              />
             ) : (
               <CreateNoteButton note={note} navigate={navigate} />
             )}
