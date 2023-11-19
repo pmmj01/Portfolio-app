@@ -78,9 +78,6 @@ const NotePage = () => {
   return (
     <div className="notes-list-item">
       <div className="note-header">
-
-      </div>
-      <div className="note-header">
         <div>
           {id !== "new" && isEditing && (
             <NoteAction
