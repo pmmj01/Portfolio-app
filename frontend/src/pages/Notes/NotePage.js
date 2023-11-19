@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import NoteAction from "../../components/Notes/NiteAction";
+import NoteAction from "../../components/Notes/NoteAction";
 import { CreateNoteButton } from "../../components/Notes/CreateNote";
 
 const NotePage = () => {
@@ -56,7 +56,7 @@ const NotePage = () => {
 
       if (response.ok) {
         if (actionType === "DELETE") {
-          navigate(`/notes`);
+          navigate(`/notes/`);
         } else {
           const updatedNote = await response.json();
           setNote(updatedNote);
@@ -78,9 +78,9 @@ const NotePage = () => {
   return (
     <div className="notes-list-item">
       <div className="note-header">
-        <div>
-          <h4>{note?.title}</h4>
-        </div>
+
+      </div>
+      <div className="note-header">
         <div>
           {id !== "new" && isEditing && (
             <NoteAction
@@ -89,30 +89,29 @@ const NotePage = () => {
             />
           )}
         </div>
-        <td>
-          <tr>
-            {id !== "new" ? (
-              <NoteAction
-                actionType="DELETE"
-                onClick={() => handleNoteAction("DELETE")}
-              />
-            ) : (
-              <CreateNoteButton note={note} navigate={navigate} />
-            )}
-          </tr>
-        </td>
+        <div>
+          {id !== "new" ? (
+            <NoteAction
+              actionType="DELETE"
+              onClick={() => handleNoteAction("DELETE")}
+            />
+          ) : (
+            <CreateNoteButton note={note} navigate={navigate} />
+          )}
+        </div>
       </div>
-      <div className="note">
+      <div>
         <div>
           <textarea
             className="notes-title-input"
             name="title"
             placeholder="Title"
+            maxLength="20"
             value={note?.title || ""}
             onChange={(e) => handleChange(e, "title")}
           />
         </div>
-        <div>
+        <div className="note">
           <textarea
             name="body"
             placeholder="Notes"

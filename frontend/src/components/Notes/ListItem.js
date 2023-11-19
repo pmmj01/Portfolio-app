@@ -27,8 +27,8 @@ const ListItem = ({ note }) => {
         <div className="notes-list-item">
           <div className="title-and-date">
             <div className="note-header">
-              {note?.title && note.title.length > 30
-                ? capitalizeFirstLetter(note.title.slice(0, 30)) + "..."
+              {note?.title && note.title.length > 12
+                ? capitalizeFirstLetter(note.title.slice(0, 12)) + "..."
                 : capitalizeFirstLetter(note.title) || (
                     <u className="empty-block">Brak tytułu</u>
                   )}

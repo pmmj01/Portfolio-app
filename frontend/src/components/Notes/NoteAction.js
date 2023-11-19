@@ -3,7 +3,7 @@ import React from "react";
 const NoteAction = ({ actionType, onClick }) => {
   const handleAction = () => {
     if (onClick) {
-      onClick(); // Wywołanie przekazanej funkcji obsługującej akcję
+      onClick();
     }
   };
 

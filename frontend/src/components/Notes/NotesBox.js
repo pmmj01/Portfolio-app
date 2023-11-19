@@ -9,7 +9,7 @@ const NotesBox = () => {
 
   useEffect(() => {
     getNotes();
-  }, []);
+  }, [isOnNotesPage]);
 
   const getNotes = async () => {
     const response = await fetch("/api/notes/notes/");
@@ -27,9 +27,13 @@ const NotesBox = () => {
   return (
     <div>
       {isOnNotesPage ? commonHeader : <Link to="/notes/">{commonHeader}</Link>}
-      <Link to="/notes/new" className="floating-button">
-        +
-      </Link>
+      {isOnNotesPage ? (
+        <Link to="/notes/new" className="floating-button">
+          +
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
