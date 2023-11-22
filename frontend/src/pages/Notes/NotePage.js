@@ -92,6 +92,8 @@ const NotePage = () => {
               actionType="DELETE"
               onClick={() => handleNoteAction("DELETE")}
             />
+          ) : note?.title === "" || note?.body === "" ? (
+            ""
           ) : (
             <CreateNoteButton note={note} navigate={navigate} />
           )}
