@@ -8,6 +8,7 @@ const NotePage = () => {
   const { id } = useParams();
   const [note, setNote] = useState();
   const [isEditing, setIsEditing] = useState(id === "new");
+  const [isTitleManual, setIsTitleManual] = useState(false);
 
   useEffect(() => {
     if (id !== "new") getNote();
@@ -31,10 +32,30 @@ const NotePage = () => {
   const handleChange = (e, fieldName) => {
     setIsEditing(true);
     const { value } = e.target;
-    setNote((prevNote) => ({
-      ...prevNote,
-      [fieldName]: value,
-    }));
+    const updated = note?.updated;
+    const created = note?.updated;
+
+    if (fieldName === "title") {
+      setIsTitleManual(value !== "");
+      setNote((prevNote) => ({
+        ...prevNote,
+        title: value.substring(0, 20),
+      }));
+    } else if (fieldName === "body") {
+      setNote((prevNote) => {
+        let updatedTitle = prevNote.title;
+        if (!updated && !created) {
+          const truncatedTitle = value.substring(0, 15);
+          updatedTitle = truncatedTitle;
+        }
+
+        return {
+          ...prevNote,
+          title: updatedTitle,
+          body: value.substring(0, 200),
+        };
+      });
+    }
   };
 
   const handleNoteAction = async (actionType) => {
@@ -92,7 +113,7 @@ const NotePage = () => {
               actionType="DELETE"
               onClick={() => handleNoteAction("DELETE")}
             />
-          ) : note?.title === "" || note?.body === "" ? (
+          ) : note?.body === "" ? (
             ""
           ) : (
             <CreateNoteButton note={note} navigate={navigate} />
@@ -106,7 +127,7 @@ const NotePage = () => {
             name="title"
             placeholder="Title"
             maxLength="20"
-            value={note?.title || ""}
+            value={note?.title}
             onChange={(e) => handleChange(e, "title")}
           />
         </div>

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apiNotes.apps.ApinotesConfig',
+    'apiSnakeGame.apps.ApisnakegameConfig',
     'rest_framework',
     'corsheaders',
 ]
