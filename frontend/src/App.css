@@ -176,6 +176,36 @@ a {
   color: var(--color-main);
 }
 
+.games-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.games-dropdown .games-list {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: -9px;
+  width: 235px;
+  z-index: 1;
+}
+
+.games-dropdown .games-list a {
+  color: var(--color-white);
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+  border-radius: 20px;
+  width: 55%;
+}
+
+.games-dropdown .games-list a:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  width: 55%;
+  color: var(--color-main);
+}
+
 /* NOTES STYLES */
 .notes-header {
   display: flex;
@@ -382,13 +412,13 @@ a {
 }
 
 .note-list {
-  background-color: #f5f5f5; /* Kolor tła kontenera */
-  border: 1px solid #ddd; /* Subtelna ramka wokół kontenera */
-  border-radius: 3px; /* Zaokrąglenie rogów kontenera */
-  padding: 20px; /* Odstęp wewnętrzny kontenera */
-  display: flex; /* Ustawienie flexbox dla układu elementów w kontenerze */
-  gap: 20px; /* Odstęp między elementami w kontenerze */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Cień kontenera */
+  background-color: #f5f5f5; 
+  border: 1px solid #ddd; 
+  border-radius: 3px;
+  padding: 20px; 
+  display: flex; 
+  gap: 20px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .note-data {
