@@ -11,6 +11,7 @@
   --color-lighter: #f9f9f9;
   --color-white: #fff;
   --color-border:#e0e3e6;
+  --color-neon-green: #39ff14;
 }
 
 .dark {
@@ -60,6 +61,14 @@ a {
   align-items: center;
 }
 
+.container-home {
+  width: 100%;
+  height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+}
 
 .app {
   width: 100%;
@@ -67,18 +76,28 @@ a {
   height: 88vh;
   margin: 0 auto;
   background-color: var(--color-white);
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 16px rgba(255, 255, 255, 0.1);
   position: relative;
 }
 
+.app-home {
+  width: 80%;
+  max-width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: var(--color-white);
+  box-shadow: 0px 0px 16px rgba(255, 255, 255, 0.10);
+  position: relative;
+}
 
 .app-header {
   display: flex;
   align-items: center;
   padding: 16px;
   justify-content: space-between;
-  background-color: var(--color-lighter);
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.0); */
+  /* box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1); */
+  border: none;
 }
 
 .app-header h1 {
@@ -86,6 +105,9 @@ a {
   color: var(--color-dark);
   font-weight: 800;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  flex: 1;
 }
 
 .app-header button {
@@ -105,38 +127,56 @@ a {
   padding: 16px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-dark);
+}
+
+.header-contact {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+.line-toggle {
+  display: flex;
+  bottom: 55px;
+  right: 10px;
+}
+
+/* LOGO STYLES */
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 5rem;
+  color: #999;
+}
+
 
 /* MENU STYLES */
-.sidebar {
-  height: 100%;
-  width: 220px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: var(--color-dark);
-  overflow-x: hidden;
-  padding-top: 50px;
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5rem;
 }
 
-.sidebar a {
-  padding: 8px 16px;
+.menu a {
+  margin-left: 2rem;
   text-decoration: none;
-  font-size: 22px;
-  font-family: 'Lexend', sans-serif;
-  color: dark var(--color-text);
-  display: grid;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  font-size: 18px;
+  color: var(--color-white);
+  transition: color 0.4s ease-in-out;
 }
 
-.dark-sidebar a:hover {
+.menu a:hover {
   color: var(--color-main);
-  background-color: dark var(--color-dark);
-  transform: scale(1.05);
 }
-
 
 /* NOTES STYLES */
-
 .notes-header {
   display: flex;
   align-items: center;
@@ -213,12 +253,28 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(140, 200, 10, 0.5);
+  transition: color 0.4s ease-in-out;
 }
 
+.floating-button:hover {
+  transform: scale(1.2);
+}
 
 .floating-button > svg {
   fill: var(--color-bg);
+}
+
+.floating-button a {
+  margin-left: 2rem;
+  text-decoration: none;;
+  font-size: 48px;
+  color: var(--color-white);
+  transition: color 0.4s ease-in-out;
+}
+
+.floating-button a:hover {
+  color: var(--color-main);
 }
 
 
@@ -228,9 +284,7 @@ a {
   opacity: 0.6;
 }
 
-
-/* =>  Note Styles */
-
+/* NOTE STYLES */
 
 .note-header {
   display: flex;
@@ -339,12 +393,12 @@ a {
 
 .note-data {
   font-family: 'Poppins', sans-serif;
-  background-color: #2b2b2b; /* Kolor tła notatki */
-  padding: 15px; /* Odstęp wewnętrzny notatki */
-  border: 1.5px solid #ddd; /* Ramka wokół notatki */
-  border-radius: 4px; /* Zaokrąglenie rogów notatki */
-  flex: 1; /* Rozciąganie notatek, aby wypełnić dostępne miejsce */
-  transition: background-color 0.3s ease; /* Efekt przejścia koloru tła */
+  background-color: #2b2b2b; 
+  padding: 15px; 
+  border: 1.5px solid #ddd; 
+  border-radius: 4px; 
+  flex: 1; 
+  transition: background-color 0.3s ease; 
 }
 
 .note-data:hover {
@@ -377,4 +431,128 @@ a {
 .empty-block {
   font-family: 'Poppins', sans-serif;
   color: red;
+}
+
+/* CONTACT STYLES */
+
+.contact {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 90%;
+  border: none;
+  overflow: auto;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--color-gray);
+  margin: auto;
+}
+
+.more-me {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* margin-right: 25px; */
+  margin-left: 25px;
+  text-align: justify;
+}
+
+.data-name {
+  display: block;
+  font-size: 15px;
+  color: var(--color-text)
+}
+
+.data-scroll {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px;
+}
+
+/* SLIDER */
+
+button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+}
+
+button.learn-more {
+  width: 19%;
+  height: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+button.learn-more .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-main);
+  border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: var(--color-dark);
+}
+
+button.learn-more .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  inset: 0;
+  padding: 0.75rem 1.5rem;
+  margin: 0 0 0 1.55rem;
+  color: var(--color-main);
+  font-weight: 800;
+  line-height: 2;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1.6rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
 }

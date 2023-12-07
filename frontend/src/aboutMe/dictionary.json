@@ -1,0 +1,37 @@
+{
+    "about_me": {
+        "first_name": "Piotr",
+        "last_name": "Jochemczyk",
+        "phone_number_code": "+48 5** *** ***",
+        "email": "pm***@gm***.com",
+        "about_me_pl": "Cześć! Jestem ambitnym junior fullstack developerem, który przez ostatnie 2 lata głównie skupiał się na pracy z Pythonem i Django. \nMam za sobą także roczne doświadczenie z JavaScriptem, Reactem i Reduxem, co pozwoliło mi poszerzyć swoje umiejętności w obszarze frontendu. \nMoja przygoda z PostgreSQL trwa już również rok, podobnie jak z wykorzystywaniem metodyki Scrum oraz RedHat w cyberbezpieczeństwie na poziomie podstawowym. \nCzego się nauczyłem? \nCóż, moja wiedza techniczna jest wynikiem wielu godzin spędzonych nad własnymi projektami i eksperymentowaniem z kodem. \nJestem dumny z faktu, że większość mojego doświadczenia to rezultat pracy, którą samodzielnie prowadziłem. \nRegularnie udostępniam swoje projekty, co pozwala mi stale się rozwijać i uczyć się nowych rzeczy. \nDlaczego zmieniam pracę? To pytanie często zadawane. \nOtóż, moja decyzja o zmianie wynika z mojej pasji i zaangażowania w informatykę. \nTo dla mnie nie tylko zawód, ale także hobby. \nUwielbiam być częścią świata IT i cały czas poszerzać swoją wiedzę. \nDążę do wyzwań, które pozwolą mi rosnąć zawodowo i osobowo. \nMój entuzjazm, połączony z determinacją do ciągłego doskonalenia się, czynią mnie kandydatem wartym uwagi na dalszych etapach rekrutacji. \nChciałbym mieć szansę podzielić się moimi umiejętnościami i pasją, aby współtworzyć innowacyjne rozwiązania i rozwijać się razem z waszym zespołem. \nCzekam z niecierpliwością na możliwość omówienia mojego doświadczenia oraz potencjalnego wkładu, jaki mógłbym wnieść do waszej organizacji.",
+        "about_me_eng": "Hi! I'm an ambitious junior full-stack developer who has mainly focused on working with Python and Django for the past 2 years. I also have a year of experience with JavaScript, React, and Redux, which allowed me to expand my skills in the frontend domain. My journey with PostgreSQL has also reached a year, alongside using Scrum methodology and RedHat in basic-level cybersecurity. What have I learned? Well, my technical knowledge stems from numerous hours spent on personal projects and experimenting with code. I take pride in the fact that most of my experience comes from self-driven work. I regularly share my projects, enabling me to continually evolve and learn new things. Why am I changing jobs? That's a question often asked. Well, my decision to change is rooted in my passion and dedication to the field of computer science. It's not just a profession for me; it's a hobby too. I love being part of the IT world and constantly expanding my knowledge. I strive for challenges that allow me to grow professionally and personally. My enthusiasm, coupled with a determination for continual improvement, makes me a candidate worth considering for further stages of recruitment. I would love the chance to share my skills and passion to co-create innovative solutions and grow together with your team. I'm eagerly awaiting the opportunity to discuss my experience and the potential contributions I could bring to your organization.",
+        "address": "Bielsko-Biała, Polska"
+    },
+    "umiejetnosci": [
+        {
+            "nazwa": "JavaScript",
+            "poziom": "średnio-zaawansowany"
+        },
+        {
+            "nazwa": "React",
+            "poziom": "początkujący"
+        },
+        {
+            "nazwa": "Redux",
+            "poziom": "podstawowy"
+        },
+        {
+            "nazwa": "Python",
+            "poziom": "średnio-zaawansowany"
+        },
+        {
+            "nazwa": "Django",
+            "poziom": "początkujący"
+        },
+        {
+            "nazwa": "PostgreSQL",
+            "poziom": "początkujący"
+        }
+    ]
+}
