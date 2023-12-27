@@ -28,7 +28,7 @@ const NotesBox = () => {
     <div>
       {isOnNotesPage ? commonHeader : <Link to="/notes/">{commonHeader}</Link>}
       {isOnNotesPage ? (
-        <Link to="/notes/new" className="floating-button">
+        <Link to="/notes/new/" className="floating-button">
           +
         </Link>
       ) : (

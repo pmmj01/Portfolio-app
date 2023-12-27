@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../uicons/logo/logo.png";
 
 const MainMenu = () => {
   const [isGamesOpen, setIsGamesOpen] = useState(false);
@@ -17,13 +18,14 @@ const MainMenu = () => {
   };
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="logo">
-        <h1>LOGO</h1>
+        <img src={logo} className="logo-app" alt="Logo"/>
       </div>
       <div className="menu">
         <Link to="/">Home</Link>
         <Link to="/notes/">Notes</Link>
+        <Link to="/todo/">ToDo</Link>
         <div className="games-dropdown"
         onMouseEnter={handleGamesHover}
         onMouseLeave={handleGamesLeave}>
@@ -35,10 +37,9 @@ const MainMenu = () => {
             </div>
           )}
         </div>
-        <Link to="/todo">ToDo</Link>
         <Link to="/contact">Contact</Link>
       </div>
-    </div>
+    </header>
   );
 };
 
