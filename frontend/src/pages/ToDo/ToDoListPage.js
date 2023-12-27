@@ -77,7 +77,6 @@ const ToDoListPage = () => {
         },
         body: JSON.stringify({ archived }),
       });
-      console.log(response, fetch);
       if (response.ok) {
         setToDoList((prevToDo) => {
           const updatedToDoList = prevToDo.map((item) => {

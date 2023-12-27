@@ -53,7 +53,7 @@ const TaskDetailsModal = ({
               id={`archived-${task.id}`}
               checked={task.archived}
               onChange={handleClickArchived}
-              disabled={task.archived}
+            //   disabled={task.archived}
             />
             <label className="switch" htmlFor={`archived-${task.id}`}>
               <span className="slider"></span>

@@ -67,21 +67,41 @@ def getEToDo(request):
 def getToDo(request, pk):
     if request.method == 'GET':
         return getTodoItem(request, pk)
+    
+    try:
+        todo = ToDo.objects.get(pk=pk)
+    except ToDo.DoesNotExist:
+        return Response(status=404)
+    
+    # if request.method == 'PATCH':
+    #     try:
+    #         todo = ToDo.objects.get(pk=pk)
+    #     except ToDo.DoesNotExist:
+    #         return Response(status=404)
+
+    # data = request.data
+    # if 'completed' in data:
+    #     todo.completed = data['completed']
+    # if 'archived' in data:
+    #     todo.archived = data['archived']
+
+    # todo.save()
+    
+    # serializer = TodoSerializer(todo)
+    
+    # return Response(serializer.data)
+
     if request.method == 'PATCH':
-        try:
-            todo = ToDo.objects.get(pk=pk)
-        except ToDo.DoesNotExist:
-            return Response(status=404)
+        data = request.data
+        if 'completed' in data:
+            todo.completed = data['completed']
+        if 'archived' in data:
+            todo.archived = data['archived']
+        
+        todo.save()
+        serializer = TodoSerializer(todo)
+        return Response(serializer.data)
 
-    data = request.data
-    if 'completed' in data:
-        todo.completed = data['completed']
-    if 'archived' in data:
-        todo.archived = data['archived']
-
-    todo.save()
-    serializer = TodoSerializer(todo)
-    return Response(serializer.data)
     if request.method == 'DELETE':
         return deleteTodo(request, pk)
 
