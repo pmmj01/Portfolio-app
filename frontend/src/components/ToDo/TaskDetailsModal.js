@@ -1,16 +1,16 @@
 import React from "react";
 
 const TaskDetailsModal = ({
-  task,
-  onClose,
-  onUpdateCompleted,
-  onUpdateArchived,
+    task,
+    onClose,
+    onUpdateCompleted,
+    onUpdateArchived,
 }) => {
-  const handleClose = () => {
-    onClose();
-  };
+    const handleClose = () => {
+        onClose();
+    };
 
-  const handleOverlayClick = (e) => {
+    const handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
       onClose();
     }
@@ -31,10 +31,10 @@ const TaskDetailsModal = ({
       <div className="modal">
         <h1>{task.description}</h1>
         <div className="button-container">
-          <div className="slider-container-completed" data-info={task.completed
-                ? "Completed✅"
-                : "Completed❌"}
-                >
+          <div
+            className="slider-container-completed"
+            data-info={task.completed ? "Completed✅" : "Completed❌"}
+          >
             <input
               type="checkbox"
               className="checkbox"
@@ -46,14 +46,17 @@ const TaskDetailsModal = ({
               <span className="slider"></span>
             </label>
           </div>
-          <div className="slider-container-archived" data-info={task.archived ? "Archived\u2705" : "Archived\u274c"}>
+          <div
+            className="slider-container-archived"
+            data-info={task.archived ? "Archived\u2705" : "Archived\u274c"}
+          >
             <input
               type="checkbox"
               className={`checkbox ${task.archived ? "archived-checkbox" : ""}`}
               id={`archived-${task.id}`}
               checked={task.archived}
               onChange={handleClickArchived}
-            //   disabled={task.archived}
+              disabled={task.archived}
             />
             <label className="switch" htmlFor={`archived-${task.id}`}>
               <span className="slider"></span>

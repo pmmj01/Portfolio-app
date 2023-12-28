@@ -366,6 +366,43 @@ a {
   cursor: pointer;
 }
 
+.notes-title .back-emoji {
+  display: inline-block;
+  margin-right: 5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 20px 10px 0;
+  border-color: transparent #f68659 transparent transparent;
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.first-arrow {
+  transform: translateX(-3px);
+}
+
+.second-arrow {
+  opacity: 0;
+  transform: translateX(90px);
+}
+
+.notes-title.hovered  .first-arrow {
+  animation: arrowMove 1s forwards;
+}
+
+.notes-title.hovered  .second-arrow {
+  animation: arrowAppear 1s forwards;
+}
+
+.notes-title:not(.hovered) .first-arrow {
+  animation: arrowMoveBack 1s forwards;
+}
+
+.notes-title:not(.hovered) .second-arrow {
+  animation: arrowAppearBack 1s forwards;
+}
+
 .notes-title-input {
   position:relative;
   background-color: var(--color-white);
@@ -658,6 +695,7 @@ button:hover .button-text {
   align-items: center;
   justify-content: space-between;
   padding: 10px 16px;
+  cursor: pointer;
 }
 
 .todo-title,
@@ -756,6 +794,7 @@ button:hover .button-text {
   border-radius: 25px;
   background-color: #e9e9eb;
   transition: all 0.2s ease-out;
+  cursor: pointer;
 }
 
 .slider {
@@ -769,6 +808,7 @@ button:hover .button-text {
     0px 3px 8px rgba(0, 0, 0, 0.15),
     0px 3px 1px rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease-out;
+  cursor: pointer;
 }
 
 .checkbox:checked + .switch {
@@ -788,4 +828,74 @@ button:hover .button-text {
   display: inline;
   font-size: 10px;
   color: var(--color-light);
+}
+
+.todo-title .back-emoji {
+  display: inline-block;
+  margin-right: 5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 20px 10px 0;
+  border-color: transparent #f68659 transparent transparent;
+  opacity: 1;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.first-arrow {
+  transform: translateX(-3px);
+}
+
+.second-arrow {
+  opacity: 0;
+  transform: translateX(90px);
+}
+
+.todo-title.hovered  .first-arrow {
+  animation: arrowMove 1s forwards;
+}
+
+.todo-title.hovered  .second-arrow {
+  animation: arrowAppear 1s forwards;
+}
+
+.todo-title:not(.hovered) .first-arrow {
+  animation: arrowMoveBack 1s forwards;
+}
+
+.todo-title:not(.hovered) .second-arrow {
+  animation: arrowAppearBack 1s forwards;
+}
+
+@keyframes arrowMove {
+  to {
+    transform: scale(1.2) translateX(-3px);
+  }
+}
+
+@keyframes arrowAppear {
+  to {
+    opacity: 1;
+    transform: scale(1.2) translateX(5px);
+  }
+}
+
+@keyframes arrowMoveBack {
+  from {
+    transform: scale(1.2) translateX(-3px);
+  }
+  to {
+    transform: scale(1) translateX(-3px);
+  }
+}
+
+@keyframes arrowAppearBack {
+  from {
+    opacity: 1;
+    transform: scale(1.2) translateX(5px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1) translateX(90px);
+  }
 }

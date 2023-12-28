@@ -9,7 +9,7 @@ const NoteMenu = () => {
   return (
     <div className="container dark">
       <div className="app">
-        <Header />
+        {/* <Header /> */}
         <NotesBox />
         <Routes>
           <Route path="/" exact element={<NotesListPages />} />

@@ -4,8 +4,22 @@ import { Link, useLocation } from "react-router-dom";
 const NotesBox = () => {
   const [notes, setNotes] = useState([]);
   const location = useLocation([]);
+  const [isHovered, setIsHovered] = useState(false);
 
   const isOnNotesPage = location.pathname === "/notes/";
+
+  let timeoutId;
+
+  const handleHover = () => {
+    clearTimeout(timeoutId);
+    setIsHovered(true);
+  };
+
+  const handleHoverOut = () => {
+    timeoutId = setTimeout(() => {
+      setIsHovered(false);
+    }, 800);
+  };
 
   useEffect(() => {
     getNotes();
@@ -18,10 +32,24 @@ const NotesBox = () => {
   };
 
   const commonHeader = (
-    <div className="notes-header">
-      <h2 className="notes-title">&#9782; Notes</h2>
+    <header className="notes-header">
+      <h2
+        className={`notes-title ${isHovered ? "hovered" : ""}`}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHoverOut}
+      >
+        {isOnNotesPage ? (
+          "Notes"
+        ) : (
+          <>
+            <span className="back-emoji first-arrow" />
+            Notes
+            <span className="back-emoji second-arrow" />
+          </>
+        )}
+      </h2>
       <p className="notes-count">{notes?.length || 0}</p>
-    </div>
+    </header>
   );
 
   return (

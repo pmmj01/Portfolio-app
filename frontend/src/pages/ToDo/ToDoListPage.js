@@ -23,7 +23,7 @@ const ToDoListPage = () => {
     }
   };
 
-  const handleTaskClick = (toDo) => {
+  const handleTaskClick = (toDo) => {;
     setSelectedTask(toDo);
   };
 
