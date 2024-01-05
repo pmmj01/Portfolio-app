@@ -31,11 +31,7 @@ const CreateNoteButton = ({ note, navigate }) => {
     }
   };
 
-  return (
-    <button onClick={handleCreateNote}>
-      Add
-    </button>
-  );
+  return <button onClick={handleCreateNote}>Add</button>;
 };
 
 export { CreateNoteButton };

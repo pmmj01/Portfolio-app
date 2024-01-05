@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ListItem from "../../components/ToDo/ListItem";
 import TaskDetailsModal from "../../components/ToDo/TaskDetailsModal";
+import TaskCreate from "../../components/ToDo/TaskCreate";
 
 const ToDoListPage = () => {
   const [toDoList, setToDoList] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
+  const [addTask, setAddTask] = useState(null);
 
   useEffect(() => {
+    // console.log("Initial selectedTask value:", selectedTask);
     getEToDo();
   }, []);
 
@@ -23,12 +26,20 @@ const ToDoListPage = () => {
     }
   };
 
-  const handleTaskClick = (toDo) => {;
+  const handleTaskClick = (toDo) => {
     setSelectedTask(toDo);
   };
 
   const handleCloseModal = () => {
     setSelectedTask(null);
+  };
+
+  const handleAddTaskClick = (toDo) => {
+    setAddTask(toDo);
+  };
+
+  const handleCloseTaskModal = () => {
+    setAddTask(null);
   };
 
   const updateCompletedStatus = async (taskId, completed) => {
@@ -105,28 +116,59 @@ const ToDoListPage = () => {
     }
   };
 
+  const updateAddStatus = async (newTask) => {
+    try {
+      const response = await fetch(`/api/todo/todo/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setToDoList((prevToDo) => [data, ...prevToDo]);
+      } else {
+        console.error("ToDoListPage... Filed to create the task");
+      }
+    } catch (error) {
+      console.error("Error creating the task: ", error);
+    }
+  };
+
   return (
-    <div className="todo">
-      <div className="todo-list">
-        {Array.isArray(toDoList) &&
-          toDoList.map((toDoList, index) => (
-            <ListItem
-              key={index}
-              todo={toDoList}
-              onClick={handleTaskClick}
-              onUpdateCompleted={updateCompletedStatus}
-              onUpdateArchived={updateArchivedStatus}
-            />
-          ))}
+    <div>
+      <div className="todo">
+        <div className="todo-list">
+          {Array.isArray(toDoList) &&
+            toDoList.map((toDoList, index) => (
+              <ListItem
+                key={index}
+                todo={toDoList}
+                onClick={handleTaskClick}
+                onUpdateCompleted={updateCompletedStatus}
+                onUpdateArchived={updateArchivedStatus}
+              />
+            ))}
+        </div>
+        {selectedTask && (
+          <TaskDetailsModal
+            task={selectedTask}
+            onClose={handleCloseModal}
+            onUpdateCompleted={updateCompletedStatus}
+            onUpdateArchived={updateArchivedStatus}
+          />
+        )}
       </div>
-      {selectedTask && (
-        <TaskDetailsModal
-          task={selectedTask}
-          onClose={handleCloseModal}
-          onUpdateCompleted={updateCompletedStatus}
-          onUpdateArchived={updateArchivedStatus}
-        />
-      )}
+      <div>
+        <button className="floating-button" onClick={handleAddTaskClick}>+</button>
+        {addTask && (
+          <TaskCreate
+            onCloseTask={handleCloseTaskModal}
+            onCreateTask={updateAddStatus}
+          />
+        )}
+      </div>
     </div>
   );
 };

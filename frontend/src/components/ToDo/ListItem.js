@@ -17,7 +17,7 @@ const ListItem = ({ todo, onClick }) => {
         onClick={handleClick}
         style={descriptionStyle}
       >
-        {todo?.description}
+        &#9679; {todo?.description}
         {todo.archived && <span style={{ float: "right" }}>Archived</span>}
       </div>
       <div className="container-status">

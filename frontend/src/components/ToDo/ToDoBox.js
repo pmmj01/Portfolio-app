@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const ToDoBox = () => {
   const [task, setTask] = useState([]);
@@ -55,13 +55,13 @@ const ToDoBox = () => {
   return (
     <div>
       {isOnToDoPage ? commonHeader : <Link to="/todo/">{commonHeader}</Link>}
-      {isOnToDoPage ? (
-        <Link to="/todo/new/" className="floating-button">
+      {/* {isOnToDoPage ? (
+        <button className="floating-button">
           +
-        </Link>
+        </button>
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 };

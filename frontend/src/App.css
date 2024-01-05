@@ -646,7 +646,7 @@ button:hover .button-text {
   background: linear-gradient(to top left, rgb(31, 33, 36, 0.1), #1f2124 90%);
   width: 450px;
   padding: 50px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -683,11 +683,44 @@ button:hover .button-text {
   color: var(--color-text)
 }
 
-.modal button {
+.close-button {
   color: var(--color-main);
   top: 20px;
   right: 20px;
   position: absolute;
+  transition: transform 0.3s ease-in-out;
+}
+
+.close-button:hover {
+  transform: scale(1.4);
+}
+
+.add-button {
+  color: var(--color-main);
+  top: 20px;
+  position: relative;
+  font-size: 25px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.add-button:hover {
+  transform: scale(1.2) rotate(20deg);
+}
+
+.add-button:active {
+  transform: scale(1.5) rotate(40deg);
+}
+
+.create-info {
+  color: var(--color-main);
+  top: 20px;
+  position: relative;
+  font-size: 15px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.create-info:hover {
+  transform: scale(1.2)
 }
 
 .todo-header {
@@ -696,6 +729,7 @@ button:hover .button-text {
   justify-content: space-between;
   padding: 10px 16px;
   cursor: pointer;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.0001));
 }
 
 .todo-title,
@@ -711,7 +745,6 @@ button:hover .button-text {
   opacity: 0.6;
 }
 
-
 .todo-list {
   padding: 0;
   margin: 16px 0;
@@ -721,6 +754,29 @@ button:hover .button-text {
 }
 
 .todo-list::-webkit-scrollbar {
+  display: none;
+}
+
+.todo-textarea textarea {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: none;
+  padding: 12px 12px;
+  width: 100%;
+  height: 11vh;
+  flex: 2;
+  resize: none;
+  box-sizing: border-box;
+  margin-right: 130px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.todo-textarea textarea:active,
+.todo-textarea textarea:focus {
+  outline: none;
+  border: none;
+}
+
+.todo-textarea textarea::-webkit-scrollbar {
   display: none;
 }
 

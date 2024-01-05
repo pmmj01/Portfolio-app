@@ -1,16 +1,16 @@
 import React from "react";
 
 const TaskDetailsModal = ({
-    task,
-    onClose,
-    onUpdateCompleted,
-    onUpdateArchived,
+  task,
+  onClose,
+  onUpdateCompleted,
+  onUpdateArchived,
 }) => {
-    const handleClose = () => {
-        onClose();
-    };
+  const handleClose = () => {
+    onClose();
+  };
 
-    const handleOverlayClick = (e) => {
+  const handleOverlayClick = (e) => {
     if (e.target.classList.contains("modal-overlay")) {
       onClose();
     }
@@ -29,7 +29,9 @@ const TaskDetailsModal = ({
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal">
-        <h1>{task.description}</h1>
+        <h1>
+          {task.description} {task.id}
+        </h1>
         <div className="button-container">
           <div
             className="slider-container-completed"
@@ -63,7 +65,7 @@ const TaskDetailsModal = ({
             </label>
           </div>
         </div>
-        <button onClick={handleClose}> X </button>
+        <button className="close-button" onClick={handleClose}>❌</button>
       </div>
     </div>
   );
